@@ -1,0 +1,41 @@
+namespace: default
+imagePullPolicy: IfNotPresent    #Uging this type of policy need when we use local registry
+imageName: localhost/kafka:v2
+
+app:
+
+  ## Application name
+  kafka: kafka
+  zk: zk
+  
+  ##Count replicas
+  replicas: 1
+
+  ##Pod disruption budget
+  pdb: 1
+
+  ##Kafka ports
+  portKafka: 9092
+  portSslKafka: 9093
+
+  ## Kafka JVM Heap Option
+  heapOptions: "-Xmx512M -Xms512M"
+  loggingLevel: INFO
+
+  ## Role type of service
+  roleType:
+    server: server
+    client: client
+
+  ##Resource requirements
+  resources:    
+    requests:
+      cpu: 500m
+      memory: 1Gi
+
+  ## User id to run a pod
+  securityContext:
+    id: 1000
+  ## Volume storage request
+  vollumeStorage: 10Gi
+

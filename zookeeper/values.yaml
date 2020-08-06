@@ -1,0 +1,46 @@
+namespace: default
+imagePullPolicy: IfNotPresent #Uging this type of policy need when we use local registry
+imageName: gcr.io/google_samples/k8szk:v1
+
+app:
+
+  ## Application name
+  zk: zk
+  
+  ##Count replicas
+  replicas: 1
+
+  ##Pod disruption budget
+  pdb: 1
+
+  ##ZK ports
+  portZkClient: 2181
+  portZkServer: 2888
+  portLeaderElection: 3888
+
+  ## Role type of service
+  roleType:
+    server: server
+    client: client
+
+  ##Resource requirements
+  resources:    
+    requests:
+      cpu: 500m
+      memory: 2Gi
+  ## User id to run a pod
+  securityContext:
+    id: 1000
+  ## Volume storage request
+  vollumeStorage: 10Gi
+
+configMap:
+
+  jvmHeap: "1G"
+  tick: "2000"
+  init: "10"
+  sync: "5"
+  clientCnxns: "60"
+  snapRetain: "3"
+  purgeInterval: "0"
+
